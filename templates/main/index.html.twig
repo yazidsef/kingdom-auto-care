@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MainController!{% endblock %}
+{% block stylesheets %}
+
+{% endblock %}
+{% block body %}
+<main class="container">
+      
+        
+        <h1 class="mt-5">Hello MainController!</h1>
+    
+    <section class="row">
+    {% for category in categories %}
+    {% if category.parent == null %}
+        <div class="col-12">
+            <h2> {{category.name}} </h2>
+        </div>
+    {% endif %}
+    <div class="col mt-3">
+        <div class="card" style="width: 18rem;">
+    <div class="card-body">
+    <h2 class="card-title">{{category.name}}</h2>
+    <a href="{{path('categories_list' , {slug:category.slug})}}" class="btn btn-primary">Voir les produits</a>
+    </div>
+    </div>
+      </div>
+    {% endfor %}
+    </section>
+</main>
+{% endblock %}
+

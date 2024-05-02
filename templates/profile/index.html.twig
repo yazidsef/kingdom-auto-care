@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfileController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+{% if app.user %}
+        <h1>Hello {{ app.user.firstname }} {{ app.user.lastname }}! ✅</h1>
+
+   <strong> Activation de votre compte avec succées </strong>
+    
+        <p class="alert alert-success">Félécitation votre compte et maintenant activer</code></p>
+    
+</div>
+{% else %}
+    <h1>Hello! ✅</h1>
+    <p class="alert alert-danger">Votre compte n'est pas activer</p>
+    <p>Vous devez activer votre compte pour accéder à votre profile</p>
+
+{% endif %}
+
+{% endblock %}
