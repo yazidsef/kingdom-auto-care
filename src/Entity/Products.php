@@ -8,6 +8,7 @@ use App\Repository\ProductsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProductsRepository::class)]
@@ -21,14 +22,23 @@ class Products
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:'le nom de produit ne peut pas etre vide')]
+    #[Assert\Length(min:5,minMessage:'le nom de produit doit contenir au moins {{ limit }} caratcteres' , max:40 , maxMessage:'le nom de produit doit contenir au plus {{ limit }} caratcteres')]
     private ?string $name = null;
 
+    #[Assert\NotBlank(message:'la description de produit ne peut pas etre vide')]
+    #[Assert\Length(min:20,minMessage:'la description de produit doit contenir au moins {{ limit }} caratcteres', 
+    max:255 , maxMessage:'la description de produit doit contenir au plus {{ limit }} caratcteres')]
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
+    #[Assert\NotBlank(message:'le prix de produit ne peut pas etre vide')]
+    #[Assert\PositiveOrZero(message:'Le prix de produit doit etre positif ou zero')]
     #[ORM\Column]
     private ?int $prix = null;
 
+    #[Assert\PositiveOrZero(message:'Le stock de produit doit etre positif')]
+    #[Assert\NotBlank(message:'le stock de produit ne peut pas etre vide')]
     #[ORM\Column]
     private ?int $stock = null;
 
