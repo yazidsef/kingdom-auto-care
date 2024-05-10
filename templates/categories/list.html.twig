@@ -10,9 +10,11 @@
              {% for product in products.data %}
         <div class="col">
        <div class="card h-100" style="width: 18rem;">
-        
+       
         <div class="card-body">
-            <img src="{{asset('uploads/products/mini/300x300'~product.images[0].name)}}" class="card-img-top" alt="...">
+        
+             <img src="{{asset('assets/uploadsproducts/mini/300x300-' ~ product.images[0].name)}}" class="card-img-top" alt="..."> 
+            
             <h5 class="card-title">{{product.name}}</h5>
             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             <a href="{{path('products_details', {slug:product.slug})}}" class="btn btn-primary">voir les details</a>
