@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-
+use Symfony\Component\Validator\Constraints as Assert;
 use function PHPUnit\Framework\isTrue;
 
 #[ORM\Entity(repositoryClass: UsersRepository::class)]
@@ -24,6 +24,8 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank(message:'l\'adresse email ne peut pas etre vide')]
+    #[Assert\Email(message:'l\'adresse email n\'est pas valide')]
     #[ORM\Column(length: 180)]
     private ?string $email = null;
 
@@ -36,21 +38,31 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      */
+    #[Assert\NotBlank(message:'le mot de passe ne peut pas etre vide')]
+    #[Assert\Length(min:8,minMessage:'le mot de passe doit contenir au moins {{ limit }} caracteres')]
     #[ORM\Column]
     private ?string $password = null;
 
+    #[Assert\NotBlank(message:'le nom ne peut pas etre vide')]
+    #[Assert\Length(min:4 ,minMessage:'le nom doit contenir au moins {{ limit }} caracteres ' , max: 50 , maxMessage:'le nom doit contenir au moins {{ limit }} caracteres')]
     #[ORM\Column(length: 100)]
     private ?string $lastname = null;
 
+    #[Assert\NotBlank(message:'le prenom ne peut pas etre vide')]
+    #[Assert\Length(min:4 ,minMessage:'le prenom doit contenir au moins {{ limit }} caracteres ' , max: 50 , maxMessage:'le prenom doit contenir au moins {{ limit }} caracteres')]
     #[ORM\Column(length: 100)]
     private ?string $firstname = null;
 
+    #[Assert\NotBlank(message:'l\'adresse ne peut pas etre vide')]
+    #[Assert\Length(min:15 ,minMessage:'l\'adresse  doit contenir au moins {{ limit }} caracteres ' , max: 50 , maxMessage:'le nom doit contenir au moins {{ limit }} caracteres')]
     #[ORM\Column(length: 255)]
     private ?string $address = null;
 
+    #[Assert\NotBlank(message:'le code postal ne peut pas etre vide')]
     #[ORM\Column(length: 5)]
     private ?string $zipcode = null;
 
+    #[Assert\NotBlank(message:'le nom de ville ne peut pas etre vide')]
     #[ORM\Column(length: 150)]
     private ?string $city = null;
 
