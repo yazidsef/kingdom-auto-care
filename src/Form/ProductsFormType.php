@@ -44,7 +44,7 @@ class ProductsFormType extends AbstractType
                 'required' => false ,
                 'constraints'=>[
                     new All(
-                    new Image(['maxWidth'=>1280,'maxWidthMessage'=>'la largeur de l\'image ne doit pas depasser 1280px']) )
+                    new Image(['maxWidth'=>1280,'maxWidthMessage'=>'la largeur de l\'image ne doit pas depasser 1280px' ]) )
                 ]
 
             ])
