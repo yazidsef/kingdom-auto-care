@@ -45,10 +45,11 @@
                   </li>
                 {% endif %}
                  
-                  
+                  {% if app.user is empty %}
                   <li class="nav-item">
                     <a href="{{path('app_login')}}" class="nav-link">Me connecter</a>
                   </li>
+                  {% endif %}
                 </ul>
               </div>
             </div>

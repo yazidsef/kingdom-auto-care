@@ -1,15 +1,16 @@
-{% extends 'base.html.twig' %}
+{% extends "base.html.twig" %}
 
-{% block title %}Hello ProductsController!{% endblock %}
+{% block title %}Détails de
+    {{ products.name }}
+{% endblock %}
 
 {% block body %}
-
-<main class="container">
-    <section class="row">
-        <div class="col-12">
-            <h1> {{products.name}} </h1>
-        </div>
-        <div class="col-6">
+    <main class="container">
+        <section class="row">
+            <div class="col-12">
+                <h1>{{ products.name }}</h1>
+            </div>
+            <div class="col-6">
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
                         {% for iteration in 1..products.images|length %}
@@ -33,12 +34,16 @@
                     </button>
                 </div>
             </div>
-        <div class="col-6">
-            <p> category :  -> {{products.categories.name}} </p>
-            <p> Prix ! {{products.prix / 100  }} </p>
-        </div>
-        
-    </section>
-</main>
-
+            <div class="col-6">
+                <p>{{ products.description }}</p>
+                <p>Catégorie : {{ products.categories.name }}</p>
+                <p>Prix : {{ products.prix / 100 }} €</p>
+                {% if products.stock > 0 %}
+                    <a href="{{ path('cart_add', {id: products.id}) }}" class="btn btn-success">Ajouter au panier</a>
+                {% else %}
+                    <p class="text-danger">Temporairement en rupture de stock</p>
+                {% endif %}
+            </div>
+        </section>
+    </main>
 {% endblock %}
