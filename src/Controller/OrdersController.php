@@ -55,10 +55,11 @@ class OrdersController extends AbstractController
             $session->remove('panier');
 
             $this->addFlash('success','Votre commande a été enregistrée avec succès');
-            $this->redirectToRoute('main');
+           return $this->redirectToRoute('main');
         }
         return $this->render('orders/index.html.twig', [
             'controller_name' => 'OrdersController',
         ]);
     }
+    
 }

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    liste des commandes
+{% endblock %}
+
+{% block body %}
+{{ dump(orders) }}
+    <div class="container">
+        <h1>Liste des commandes</h1>
+        <div class="row">
+            <div class="col-9">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>reference</th>
+                            <th>Client</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <!-- tbody -->
+                    <tbody>
+                    {% for order in orders %}
+                        <tr> 
+                            <td> {{order.id}} </td>
+                            <td> {{order.reference}} </td>
+                            <td> {{order.users.firstname}} {{order.users.lastname}}   </td>    
+                            <td> {{order.createdat|date}}</td>  
+                            <td> <a href="{{path('admin_orders_details',{id:order.id})}}" class="btn btn-success">Details</a></td>  
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

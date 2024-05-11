@@ -10,6 +10,7 @@
             <p><a href="">Ajouter une categories</a></p>
         </div>
     </article>
+
     <!-- ajouter un produit -->
     <article class="card mb-3">
         <div class="card-header">
@@ -20,6 +21,17 @@
             <p><a href="{{path('admin_products_add')}}">Ajouter un produit</a></p>
         </div>
     </article>
+    {# Details des commandes #}
+    <article class="card mb-3">
+        <div class="card-header">
+            Commandes
+        </div>
+        <div class="card-body">
+            <p><a href="{{path('admin_orders_index')}}">liste des commandes</a></p>
+        </div>
+    </article>
+
+    {# Details des utilisateurs #}
     <article class="card mb-3">
         <div class="card-header">
             Utilisateurs
@@ -28,5 +40,6 @@
             <p><a href="{{path('admin_users_index')}}">liste des utilisateurs</a></p>
         </div>
     </article>
+    
    
 </aside>
