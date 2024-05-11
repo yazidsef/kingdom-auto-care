@@ -28,7 +28,15 @@
                   </li>
                 </ul>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                {# verification de conxn de l'utilisateur #}
                 {% if app.user %}
+                {# is_granted is a gloabal twig function for verification of roles #}
+                {% if is_granted('ROLE_PRODUCT_ADMIN') %}
+                <li class="nav-item">
+                    <a href="{{path('admin_index')}}" class="nav-link">Administration</a>
+                  </li>
+                {% endif %}
+                
                    <li class="nav-item">
                     <a href="{{path('profile_index')}}" class="nav-link">Mon compte</a>
                   </li>

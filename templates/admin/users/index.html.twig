@@ -3,5 +3,70 @@
 {% block title %}administration des utilisateurs{% endblock %}
 
 {% block body %}
-    
+     <div class="container">
+        <div class="row">
+            
+            <main class="col-9 border border-light bg-white p-2">
+                <h1>Liste des categories</h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>email</th>
+                            <th>Nom</th>
+                            <th>Prenom</th>
+                            <th>addresse</th>
+                            <th>Code postal</th>
+                            <th>Ville</th>
+                            <th>role</th>
+                            <th>Validation</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                            <tr>
+                                <td> {{user.id}} </td>
+                                <td> {{user.email}} </td>
+                                <td> {{user.firstname}} </td>
+                                <td> {{user.lastname}} </td>
+                                <td> {{user.address}} </td>
+                                <td> {{user.zipcode}} </td>
+                                <td> {{user.city}} </td>
+                                <td> 
+                                {% for role in user.roles %}
+                                   {% if role == 'ROLE_ADMIN' %}
+                                    {% set name = 'Administrateur' %}
+                                    {% set color = 'danger' %}
+                                   {% elseif role == "ROLE_PRODUCT_ADMIN" %}
+                                    {% set name = 'admin produits' %}
+                                    {% set color = 'warning' %}
+                                     {% else %}
+                                        {% set name = "Membre" %}
+                                        {% set color = "success" %}
+                                    {% endif %}
+                                    <span class="badge bg-{{ color }}"> {{name}} </span>
+                                {% endfor %}
+                                </td>
+                                <td> 
+                                {% if user.isVerified == true %}
+                                <span class="badge bg-success">Validé(e)</span>
+                                {% else %}
+                                <span class="badge bg-danger">non Validé(e)</span>
+                                {% endif %}
+                                
+                                
+                                 </td>
+
+
+                                
+
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </main>
+        </div>
+    </div>
 {% endblock %}

@@ -1,7 +1,46 @@
-{% extends 'base.html.twig'%}
+{% extends "base.html.twig" %}
+
 {% block title %}
-    administration des produits
+    Liste des categories
 {% endblock %}
+
 {% block body %}
-    <h1>Administration des produits</h1>
+    <div class="container">
+        <div class="row">
+            
+            <main class="col-9 border border-light bg-white p-2">
+                <h1>Liste des categories</h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Photo</th>
+                            <th>Nom</th>
+                            <th>Prix</th>
+                            <th>Stock</th>
+                            <th>Categorie</th>
+                            <th>Actions</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in products %}
+                            <tr>
+                                <td> {{product.id}} </td>
+                                <td>    <img src="{{ asset('assets/uploadsproducts/' ~ product.images[0].name) }}" alt="Image de {{ product.name }}" width="150" height="auto" /></td>
+                                <td> {{product.name}} </td>
+                                <td> {{product.prix}} </td>
+                                <td> {{product.stock}} </td>
+                                <td> {{product.categories.name}} </td>
+                                <td>
+                                    <a href="{{path('admin_products_edit', {'id': product.id})}}" class="btn btn-primary">Modifier</a>
+                                    <a href="{{path('admin_products_delete', {'id': product.id})}}" class="btn btn-danger">Supprimer</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </main>
+        </div>
+    </div>
 {% endblock %}

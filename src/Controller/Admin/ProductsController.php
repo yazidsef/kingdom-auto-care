@@ -18,9 +18,10 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class ProductsController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index():Response
+    public function index(ProductsRepository $productsRepository):Response
     {
-        return $this->render('admin/products/index.html.twig');
+        $products = $productsRepository->findBy([],['id'=>'asc']);
+        return $this->render('admin/products/index.html.twig',compact('products'));
     }
     #[Route('/ajout', name: 'add')]
     public function add(PictureService $pictureService ,Request $request , EntityManagerInterface $em , SluggerInterface $slugger):Response
@@ -99,10 +100,12 @@ class ProductsController extends AbstractController
         return $this->render('admin/products/edit.html.twig' , ['form'=>$form->createView(),'product'=>$product]);
     }
     #[Route('/suppression/{id}', name: 'delete')]
-    public function delete(Products $product):Response
+    public function delete(Products $product , EntityManagerInterface $em):Response
     {
     $this->denyAccessUnlessGranted('PRODUCT_DELETE', $product);
-
+        $em->remove($product);
+        $em->flush();
+        $this->addFlash('success','Le produit a bien été supprimé');
         return $this->render('admin/products/index.html.twig');
     }
 
