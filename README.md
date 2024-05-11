@@ -1,1 +1,1 @@
-E-commerce website with symfony 6.5.4 and bootstrap 
+E-commerce website with symfony 6.4.6 and bootstrap 
