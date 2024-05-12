@@ -5,28 +5,72 @@
 
 {% endblock %}
 {% block body %}
-<main class="container">
-      
-        
-        <h1 class="mt-5">Categories</h1>
-    
-    <section class="row">
-    {% for category in categories %}
-    {% if category.parent == null %}
-        <div class="col-12">
-            <h2> {{category.name}} </h2>
-        </div>
-    {% endif %}
-    <div class="col mt-3">
-        <div class="card" style="width: 18rem;">
-    <div class="card-body">
-    <h2 class="card-title">{{category.name}}</h2>
-    <a href="{{path('categories_list' , {slug:category.slug})}}" class="btn btn-primary">Voir les produits</a>
-    </div>
-    </div>
-      </div>
-    {% endfor %}
-    </section>
-</main>
+  <main class="container">
+        {{ dump(categories) }}
+  
+            <div class="row ">
+
+                <!-- categories -->
+                <div class=" border border-black col-2">
+                    <h1>categories</h1>
+
+                    
+                    <div class="row mt-3">
+                    {% for category in categories %}
+                      <a href="{{path('categories_list' , {slug:category.slug})}}" class="col-12 border border-black p-3 text-wrap">{{category.name}}</a>  
+                    {% endfor %}
+                    </div>
+                    
+                    
+                </div>
+                
+                <!-- produits -->
+                <div class=" border border-black col-9">
+                    <div class="row ">
+                        
+                     
+                      {% for category in categories %}
+
+                        {% if category.products is defined %}
+                            {% for product in category.products %}
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="card h-100">
+                                    <img src="{{ asset('assets/uploadsproducts/mini/300x300-') ~ product.images[0].name }}" class="d-block w-100" alt="{{ product.name }}">
+                                  <div class="card-body">
+                                    <h4 class="card-title">{{product.name}}</h4>
+                                    <h5>{{product.prix}} $</h5>
+                                    <p class="card-text">{{product.description}}</p>
+                                  </div>
+                                  <div class="card-footer">
+                                    <a href="{{path('products_details', {slug:product.slug})}}" class="btn btn-primary btn-block">Voir le Produit</a>
+                                  </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        {% endif %}
+                        
+                        {% endfor %}
+                    
+                     
+                      </div>
+
+                </div>
+
+                <!-- marques -->
+                <div class=" border border-black col-1">
+                    <div class="row text-center">
+                        <h1 class="marques text-center m-auto">Marques</h1>
+                        <div class=""> <img src="images.png" width="110" height="90" class="rounded-circle" alt=""> </div>
+                        <div class=""> <img src="images.png" width="110" height="90" class="rounded-circle" alt=""> </div>
+                        <div class=""> <img src="images.png" width="110" height="90" class="rounded-circle" alt=""> </div>
+                        <div class=""> <img src="images.png" width="110" height="90" class="rounded-circle" alt=""> </div>
+                        <div class=""> <img src="images.png" width="110" height="90" class="rounded-circle" alt=""> </div>
+                        <div class=""> <img src="images.png" width="110" height="90" class="rounded-circle" alt=""> </div>
+                    </div>
+                </div>
+            </div>
+       
+      </main>
+
 {% endblock %}
 

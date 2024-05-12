@@ -56,4 +56,11 @@ class CategoriesRepository extends ServiceEntityRepository
                 ->getQuery()
                 ->getOneOrNullResult();
             }
+            public function ProductsWithCategories(){
+                return $this->createQueryBUilder('c')
+                ->leftJoin('c.products','p')
+                ->addSelect('p')
+                ->getQuery()
+                ->getResult();
+            }
 }
