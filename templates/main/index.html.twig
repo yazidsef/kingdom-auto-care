@@ -5,35 +5,30 @@
 
 {% endblock %}
 {% block body %}
-  <main class="container">
-        {{ dump(categories) }}
-  
+  <main class="container">  
             <div class="row ">
-
                 <!-- categories -->
-                <div class=" border border-black col-2">
-                    <h1>categories</h1>
-
-                    
+               <div class="border border-black col-3 col-sm-3 col-lg-2 d-none d-sm-block p-3">
+                    <h1>categories</h1>        
                     <div class="row mt-3">
                     {% for category in categories %}
-                      <a href="{{path('categories_list' , {slug:category.slug})}}" class="col-12 border border-black p-3 text-wrap">{{category.name}}</a>  
+                    {% if category.parent == null %}
+                      <h2 class=" mt-2 m-auto medium"> {{category.name}}  </h2> 
+                      {% else  %}
+                      <a href="{{path('categories_list' , {slug:category.slug})}}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">{{category.name}}</a>  
+                    {% endif %}
                     {% endfor %}
-                    </div>
-                    
-                    
+                    </div>      
                 </div>
                 
                 <!-- produits -->
-                <div class=" border border-black col-9">
-                    <div class="row ">
-                        
-                     
+                <div class="col-12 border border-black col-sm-9 center">
+                    <div class="row ">   
                       {% for category in categories %}
 
                         {% if category.products is defined %}
                             {% for product in category.products %}
-                            <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="col-6 col-lg-4 col-md-6  mb-4">
                                 <div class="card h-100">
                                     <img src="{{ asset('assets/uploadsproducts/mini/300x300-') ~ product.images[0].name }}" class="d-block w-100" alt="{{ product.name }}">
                                   <div class="card-body">
@@ -57,10 +52,10 @@
                 </div>
 
                 <!-- marques -->
-                <div class=" border border-black col-1">
+                <div class=" border border-black col-1 d-none  d-lg-block">
                     <div class="row text-center">
                         <h1 class="marques text-center m-auto">Marques</h1>
-                        <div class=""> <img src="images.png" width="110" height="90" class="rounded-circle" alt=""> </div>
+                      <div><img src="{{ asset('assets/uploadsproducts/mini/300x300-4fa14a291c928d03ce43023b1e519d03.webp') }}" width="110" height="90" class="rounded-circle" alt=""></div>
                         <div class=""> <img src="images.png" width="110" height="90" class="rounded-circle" alt=""> </div>
                         <div class=""> <img src="images.png" width="110" height="90" class="rounded-circle" alt=""> </div>
                         <div class=""> <img src="images.png" width="110" height="90" class="rounded-circle" alt=""> </div>

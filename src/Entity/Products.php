@@ -59,6 +59,9 @@ class Products
     #[ORM\OneToMany(targetEntity: OrdersDetails::class, mappedBy: 'products')]
     private Collection $ordersDetails;
 
+    #[ORM\ManyToOne(inversedBy: 'products')]
+    private ?Marques $marques = null;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -187,6 +190,18 @@ class Products
                 $ordersDetail->setProducts(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMarques(): ?Marques
+    {
+        return $this->marques;
+    }
+
+    public function setMarques(?Marques $marques): static
+    {
+        $this->marques = $marques;
 
         return $this;
     }

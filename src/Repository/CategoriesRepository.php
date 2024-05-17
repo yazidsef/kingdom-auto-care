@@ -59,7 +59,8 @@ class CategoriesRepository extends ServiceEntityRepository
             public function ProductsWithCategories(){
                 return $this->createQueryBUilder('c')
                 ->leftJoin('c.products','p')
-                ->addSelect('p')
+                ->leftJoin('p.marques','m')
+                ->addSelect('p', 'm')
                 ->getQuery()
                 ->getResult();
             }
