@@ -24,13 +24,14 @@ class CategoriesFixtures extends Fixture
         $iphone=$this->createCategory('iphone',$informatique,$manager);
         $manager->flush();
     }
-    public function createCategory(string $name , Categories $parent = null , ObjectManager $manager)
+    public function createCategory(string $name , Categories $parent = null , ObjectManager $manager , int $order = 1)
     {
         $category = new Categories();
         $category->setName(($name));
         $category->setSlug($this->slugger->slug($category->getName())->lower());
         $this->addReference($category->getName(),$category);
         $category->setParent($parent);
+        $category->setCategoryOrder($order);
         $manager->persist($category);
 
         return $category;
