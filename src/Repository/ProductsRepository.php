@@ -6,6 +6,7 @@ use App\Entity\Products;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @extends ServiceEntityRepository<Products>
@@ -17,9 +18,12 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ProductsRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    private $paginator; 
+
+    public function __construct(ManagerRegistry $registry , PaginatorInterface $paginator)
     {
         parent::__construct($registry, Products::class);
+        $this->paginator = $paginator;
     }
 
     //    /**
@@ -86,5 +90,17 @@ class ProductsRepository extends ServiceEntityRepository
             $result['limit']= $limit;            
             return $result;
         }
+
+
+
+
+        public function testQuery(){
+            $query = $this->createQueryBuilder('p')
+            ->where('p.prix > 0');
+
+            //Return the queryBuilder
+            return $query;
+        }
+     
     
 }

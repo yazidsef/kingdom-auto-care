@@ -3,8 +3,11 @@
 namespace App\Repository;
 
 use App\Entity\Categories;
+use App\Entity\Products;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Bundle\PaginatorBundle\Definition\PaginatorAwareInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @extends ServiceEntityRepository<Categories>
@@ -16,9 +19,11 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class CategoriesRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    private $paginator; 
+    public function __construct(ManagerRegistry $registry , PaginatorInterface $paginator)
     {
         parent::__construct($registry, Categories::class);
+        $this->paginator = $paginator;
     }
 
     //    /**
@@ -56,12 +61,19 @@ class CategoriesRepository extends ServiceEntityRepository
                 ->getQuery()
                 ->getOneOrNullResult();
             }
-            public function ProductsWithCategories(){
-                return $this->createQueryBUilder('c')
+            public function ProductsWithCategories($page , $itemsPerPage){
+                $query=$this->createQueryBUilder('c')
                 ->leftJoin('c.products','p')
-                ->leftJoin('p.marques','m')
-                ->addSelect('p', 'm')
-                ->getQuery()
-                ->getResult();
+                ->leftJoin('c.categories','cat')
+                ->addSelect('p' , 'cat')
+                ->getQuery();
+
+                return $this->paginator->paginate(
+                    $query,/* query NOT result */
+                    $page, /*page number */
+                    $itemsPerPage /*limit per page */
+                );
             }
+
+            
 }

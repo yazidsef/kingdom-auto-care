@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+{% block title %}
+    test page
+{% endblock %}
+{% block body %}
+    <main class="container">
+        <section class="row">
+        {% for product in products %}
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="..." alt="Card image cap">
+                    <div class="card-body">
+                      <h5 class="card-title">{{product.name}}</h5>
+                      <p class="card-text"> {{product.description}} </p>
+                      <a href="#" class="btn btn-primary">voir les details </a>
+                    </div>
+                  </div>
+            </div>
+        {% endfor %}
+            </div>
+        </section>
+    </main>
+{% endblock %}
