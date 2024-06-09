@@ -62,14 +62,14 @@ class CategoriesRepository extends ServiceEntityRepository
                 ->getOneOrNullResult();
             }
             public function ProductsWithCategories($page , $itemsPerPage){
-                $query=$this->createQueryBUilder('c')
-                ->leftJoin('c.products','p')
-                ->leftJoin('c.categories','cat')
-                ->addSelect('p' , 'cat')
-                ->getQuery();
-
+                $query = $this->createQueryBuilder('c')
+                    ->leftJoin('c.products','p')
+                    ->leftJoin('p.marques','m')
+                    ->addSelect('p', 'm')
+                    ->getQuery();
+            
                 return $this->paginator->paginate(
-                    $query,/* query NOT result */
+                    $query, /* query NOT result */
                     $page, /*page number */
                     $itemsPerPage /*limit per page */
                 );

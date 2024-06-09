@@ -17,11 +17,11 @@ class MainController extends AbstractController
  
         return $this->render('main/index.html.twig',compact('categories'));
     }
-    #[Route('/test', name: 'main')]
-    public function test(ProductsRepository $products): Response
-    {       
-        $products = $products->findAll();
-        return $this->render('main/test.html.twig',compact('products'));
-    }
+    // #[Route('/test', name: 'main')]
+    // public function test(ProductsRepository $products): Response
+    // {       
+    //     $products = $products->findAll();
+    //     return $this->render('main/test.html.twig',compact('products'));
+    // }
 }
 
