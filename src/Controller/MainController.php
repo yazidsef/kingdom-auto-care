@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Repository\CategoriesRepository;
 use App\Repository\ProductsRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -17,11 +19,18 @@ class MainController extends AbstractController
  
         return $this->render('main/index.html.twig',compact('categories'));
     }
-    // #[Route('/test', name: 'main')]
-    // public function test(ProductsRepository $products): Response
-    // {       
-    //     $products = $products->findAll();
-    //     return $this->render('main/test.html.twig',compact('products'));
-    // }
+     #[Route('/test', name: 'main')]
+     public function test(ProductsRepository $products ,PaginatorInterface $paginator , Request $request): Response
+     {       
+        $query = $products->createQueryBuilder('p');
+
+        $pagination = $paginator->paginate(
+            $query, // pass query, not result
+            $request->query->getInt('page', 1), // page number
+            10 // limit per page
+        );
+    
+        return $this->render('main/test.html.twig', ['pagination' => $pagination]);
+     }
 }
 
