@@ -21,7 +21,7 @@ class Marques
     /**
      * @var Collection<int, Products>
      */
-    #[ORM\OneToMany(targetEntity: Products::class, mappedBy: 'marques')]
+    #[ORM\OneToMany(targetEntity: Products::class, mappedBy: 'marques' , orphanRemoval: true ,cascade:['persist'])]
     private Collection $products;
 
     #[ORM\OneToOne(inversedBy: 'marques', cascade: ['persist', 'remove'])]

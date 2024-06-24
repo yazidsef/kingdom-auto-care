@@ -21,13 +21,15 @@ class ProductsFixtures extends Fixture
     public function CreateProducts(string $name,int $stock, string $description , float $price , ObjectManager $manager)
     {
         $faker= Factory::create('fr_FR');
-        for($prod=1; $prod<=10;$prod++){
+        for($prod=1; $prod<=30;$prod++){
             $product = new Products();
             $product->setName($faker->name());
             $product->setSlug($this->slugger->slug($product->getName())->lower());
             $product->setDescription($faker->text());
             $product->setPrix($faker->numberBetween(1,10));
+            $product->setMarques($this->getReference('marque-'. $faker->numberBetween(1,5)));
             $product->setStock($faker->numberBetween(1,10));
+            $product->setMarques($this->getReference('marque-'. $faker->numberBetween(1,5)));
             $product->setCategories($this->getReference('informatique'));
             $this->addReference('prod-'.$prod,$product);
             $manager->persist($product);
@@ -37,7 +39,9 @@ class ProductsFixtures extends Fixture
     public function getDependencies()
     {
         return [
-            CategoriesFixtures::class
+            CategoriesFixtures::class,
+            MarquesFixtures::class
         ];
     }
+    
 }
