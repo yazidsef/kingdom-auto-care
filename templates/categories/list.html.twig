@@ -1,30 +1,31 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}
     
 {% endblock %}
 
 {% block body %}
+{# rel links for pagination #}
+
     <main class="container mt-5">
-        <section class="row">
+        <section class="row">{{ dump(products.items) }}
              {% for product in products %}
         <div class="col">
        <div class="card h-100" style="width: 18rem;">
-       
+        
         <div class="card-body">
         
-            
-            <h5 class="card-title">{{product.name}}</h5>
+            {{ dump(product.images) }}
+            <h5 class="card-title">{{product.id}}</h5>
             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             <a href="{{path('products_details', {slug:product.slug})}}" class="btn btn-primary">voir les details</a>
         </div>
        </div>
     </div>
     {% endfor %}
-      
-{# rel links for pagination #}
-{{ products.getTotalItemCount }}
+
         </section>
+
     </main>
+      <div class="row m-auto custom-pagination">{{ knp_pagination_render(products) }}</div>
    
 {% endblock %}

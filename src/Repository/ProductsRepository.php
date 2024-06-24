@@ -95,8 +95,9 @@ class ProductsRepository extends ServiceEntityRepository
             $query = $this->createQueryBuilder('p');
             $query->innerJoin('p.categories','c' );
             $query->innerJoin('p.marques','m');
-            $query->where("c.slug = '$slug'");
             $query->select('p','c','m');
+            $query->where("c.slug = '$slug'");
+            
             $query->distinct(true); // pour eviter les doublons
             return $query->getQuery()->getResult();
         

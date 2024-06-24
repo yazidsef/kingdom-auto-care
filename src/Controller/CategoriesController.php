@@ -20,10 +20,11 @@ class CategoriesController extends AbstractController
     {
         //Récupération des produits par catégorie , avec la pagination pour reduire le temps de chargement
         $allProducts = $productsRepository->testTwo($slug);
+        
         $products = $paginator->paginate(
             $allProducts,
             $request->query->getInt('page', 1),
-            4
+            4,
         );
         
         return $this->render('categories/list.html.twig',compact('products'));
