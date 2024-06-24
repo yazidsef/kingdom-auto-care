@@ -7,13 +7,12 @@
 {% block body %}
     <main class="container mt-5">
         <section class="row">
-             {% for product in products.data %}
+             {% for product in products %}
         <div class="col">
        <div class="card h-100" style="width: 18rem;">
        
         <div class="card-body">
         
-             <img src="{{asset('assets/uploadsproducts/mini/300x300-' ~ product.images[0].name)}}" class="card-img-top" alt="..."> 
             
             <h5 class="card-title">{{product.name}}</h5>
             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -22,12 +21,7 @@
        </div>
     </div>
     {% endfor %}
-        {% set path = 'categories_list' %}
-        {% set slug = category.slug %}
-        {% set pages = products.page %}
-        {% set currentPage = products.pages %}
-        {% include 'components/pagination.html.twig' %}
-        {% include 'components/test.html.twig' %}
+      
 
         </section>
     </main>

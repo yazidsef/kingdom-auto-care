@@ -67,9 +67,10 @@ class ProductsRepository extends ServiceEntityRepository
             $limit = abs($limit);
             $result = [];
             $query = $this->getEntityManager()->createQueryBuilder()
-            ->select('c','p')
+            
             ->from('app\Entity\Products','p')
             ->join('p.categories','c')
+            ->select('c','p')
             ->where("c.slug = '$slug'")
             ->setMaxResults($limit)
             ->setFirstResult(($page * $limit) - $limit);
@@ -90,7 +91,16 @@ class ProductsRepository extends ServiceEntityRepository
             $result['limit']= $limit;            
             return $result;
         }
-
+        public function testTwo(string $slug){
+            $query = $this->createQueryBuilder('p');
+            $query->innerJoin('p.categories','c' );
+            $query->innerJoin('p.marques','m');
+            $query->where("c.slug = '$slug'");
+            $query->select('p','c','m');
+            $query->distinct(true); // pour eviter les doublons
+            return $query->getQuery()->getResult();
+        
+        }
 
 
 
@@ -102,14 +112,6 @@ class ProductsRepository extends ServiceEntityRepository
             return $query;
         }
         
-        public function testTwo(){
-            $query = $this->createQueryBuilder('p');
-            $query->innerJoin('p.categories','c' );
-            $query->innerJoin('p.marques','m');
-            $query->select('p','c','m');
-            $query->distinct(true); // pour eviter les doublons
-            return $query->getQuery()->getResult();
         
-        }
     
 }
