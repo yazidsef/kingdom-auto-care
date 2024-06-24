@@ -18,7 +18,7 @@ class CategoriesController extends AbstractController
     #[Route('/{slug}' , name:'list')]
     public function list(Request $request ,string $slug , ProductsRepository $productsRepository ,PaginatorInterface $paginator): Response
     {
-        //on vas chercher le numero de page dans l'url
+        //Récupération des produits par catégorie , avec la pagination pour reduire le temps de chargement
         $allProducts = $productsRepository->testTwo($slug);
         $products = $paginator->paginate(
             $allProducts,
