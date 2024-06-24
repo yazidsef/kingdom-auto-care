@@ -22,15 +22,22 @@ class MainController extends AbstractController
      #[Route('/test', name: 'test')]
      public function test(ProductsRepository $products ,PaginatorInterface $paginator , Request $request): Response
      {       
-        $query = $products->createQueryBuilder('p');
+        
+        $products = $products->testTwo();
+        $allCategories = []; // Initialize an array to hold all categories
 
-        $pagination = $paginator->paginate(
-            $query, // pass query, not result
-            $request->query->getInt('page', 1), // page number
-            4// limit per page
-        );
+        foreach ($products as $product) {
+            foreach ($product->getCategories() as $category) {
+                $allCategories[] = $category; // Add each category to the array
+            }
+        }
     
-        return $this->render('main/test.html.twig', ['pagination' => $pagination]);
+        // Remove duplicates if necessary. This step requires that your Category entity
+        // can be compared for uniqueness (e.g., by id or name). You might need a custom
+        // function to do this efficiently, especially if $allCategories is large.
+    
+        // Use dd() to dump the categories for debugging. Remove or comment out this line for production.
+        return $this->render('main/test.html.twig', ['products' => $products ]);
      }
 }
 

@@ -60,6 +60,7 @@ class Products
     private Collection $ordersDetails;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
+    #[ORM\JoinColumn(nullable: false)]
     private ?Marques $marques = null;
 
     public function __construct()

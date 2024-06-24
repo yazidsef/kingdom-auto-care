@@ -6,22 +6,25 @@
 {# rel links for pagination #}
     <main class="container">
         <section class="row">
-         {% for products in pagination %}
+         {% for product in products %}
                 
-            {{ pagination.getTotalItemCount }}
+            
             <div class="col">
                 <div class="card" style="width: 18rem;">
                     <img class="card-img-top" src="..." alt="Card image cap">
                     <div class="card-body">
-                      <h5 class="card-title">{{ products.name }}</h5>
+                      <h5 class="card-title">{{ product.name }}</h5>
+                      <h5 class="card-title">{{ product.marques.name }}</h5>
+                      <h5 class="card-title">{{ product.categories.name }}</h5>
                       <p class="card-text">  </p>
                       <a href="#" class="btn btn-primary">voir les details </a>
                     </div>
                   </div>
             </div>
+            
+           
             {% endfor %}
-            {{ knp_pagination_render(pagination) }}
-            </div>
+            
         </section>
     </main>
 {% endblock %}

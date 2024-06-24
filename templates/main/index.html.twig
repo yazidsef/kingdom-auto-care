@@ -11,13 +11,21 @@
                <div class="bg-light background-dark col-4 col-sm-4 col-lg-2 d-none d-sm-block">
                     <h1>categories</h1>        
                     <div class="row mt-3">
-                    {% for category in categories %}
+                  {% for category in categories %}
                     {% if category.parent == null %}
-                      <h2 class=" mt-2 m-auto medium"> {{category.name}}  </h2> 
-                      {% else  %}
-                      <a href="{{path('categories_list' , {slug:category.slug})}}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">{{category.name}}</a>  
+                     <h2 class="mt-2 m-auto medium">{{ category.name }}</h2>
+                      {% for subcategory in categories %}
+                        {% if subcategory.parent is not null and subcategory.parent.id == category.id %}
+                          <a href="{{ path('categories_list', {slug: subcategory.slug}) }}" class=" col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">{{ subcategory.name }}</a>
+                          
+                        {% endif %}
+                      {% endfor %}
+                      
                     {% endif %}
-                    {% endfor %}
+                  {% endfor %}
+
+
+                    
                     </div>      
                 </div>
                 

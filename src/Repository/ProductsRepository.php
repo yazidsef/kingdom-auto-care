@@ -101,6 +101,15 @@ class ProductsRepository extends ServiceEntityRepository
             //Return the queryBuilder
             return $query;
         }
-     
+        
+        public function testTwo(){
+            $query = $this->createQueryBuilder('p');
+            $query->innerJoin('p.categories','c' );
+            $query->innerJoin('p.marques','m');
+            $query->select('p','c','m');
+            $query->distinct(true); // pour eviter les doublons
+            return $query->getQuery()->getResult();
+        
+        }
     
 }
