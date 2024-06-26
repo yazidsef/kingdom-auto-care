@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Categories;
+use App\Entity\Marques;
 use App\Entity\Products;
 use App\Repository\CategoriesRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -26,6 +27,10 @@ class ProductsFormType extends AbstractType
             ->add('description',TextType::class)
             ->add('prix',MoneyType::class , options:['divisor'=>100 , 'constraints'=>[new Positive(message:'Le prix doit etre positif')]])
             ->add('stock',IntegerType::class)
+            ->add('marques',EntityType::class,[
+                'class'=>Marques::class,
+                'choice_label'=>'name'
+            ])
             ->add('categories', EntityType::class, [
                 'class' => Categories::class,
                 'choice_label' => 'name',
