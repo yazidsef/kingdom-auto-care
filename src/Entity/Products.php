@@ -8,10 +8,14 @@ use App\Repository\ProductsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
+use Symfony\Component\HttpFoundation\File\File; 
+use Vich\UploaderBundle\Entity\File as EmbeddedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProductsRepository::class)]
+#[Vich\Uploadable]
 class Products
 {
     use CreatedAtTrait;
@@ -25,6 +29,16 @@ class Products
     #[Assert\NotBlank(message:'le nom de produit ne peut pas etre vide')]
     #[Assert\Length(min:5,minMessage:'le nom de produit doit contenir au moins {{ limit }} caratcteres' , max:40 , maxMessage:'le nom de produit doit contenir au plus {{ limit }} caratcteres')]
     private ?string $name = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $updatedAt = null;
+
+
+    #[Vich\UploadableField(mapping: 'products', fileNameProperty: 'image.name', size: 'image.size')]
+    private ?File $imageFile = null;
+
+    #[ORM\Embedded(class: 'Vich\UploaderBundle\Entity\File')]
+    private ?EmbeddedFile $image = null;
 
     #[Assert\NotBlank(message:'la description de produit ne peut pas etre vide')]
     #[Assert\Length(min:20,minMessage:'la description de produit doit contenir au moins {{ limit }} caratcteres', 
@@ -47,11 +61,7 @@ class Products
     #[ORM\JoinColumn(nullable: false)]
     private ?Categories $categories = null;
 
-    /**
-     * @var Collection<int, Images>
-     */
-    #[ORM\OneToMany(targetEntity: Images::class, mappedBy: 'products', orphanRemoval: true ,cascade:['persist'])]
-    private Collection $images;
+    
 
     /**
      * @var Collection<int, OrdersDetails>
@@ -65,7 +75,7 @@ class Products
 
     public function __construct()
     {
-        $this->images = new ArrayCollection();
+        $this->image = new EmbeddedFile();
         $this->ordersDetails = new ArrayCollection();
         $this->created_at = new \DateTimeImmutable();
     }
@@ -136,36 +146,6 @@ class Products
     }
 
     /**
-     * @return Collection<int, Images>
-     */
-    public function getImages(): Collection
-    {
-        return $this->images;
-    }
-
-    public function addImage(Images $image): static
-    {
-        if (!$this->images->contains($image)) {
-            $this->images->add($image);
-            $image->setProducts($this);
-        }
-
-        return $this;
-    }
-
-    public function removeImage(Images $image): static
-    {
-        if ($this->images->removeElement($image)) {
-            // set the owning side to null (unless already changed)
-            if ($image->getProducts() === $this) {
-                $image->setProducts(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, OrdersDetails>
      */
     public function getOrdersDetails(): Collection
@@ -205,5 +185,34 @@ class Products
         $this->marques = $marques;
 
         return $this;
+    }
+
+
+
+
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+
+        if (null !== $imageFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImage(EmbeddedFile $image): void
+    {
+        $this->image = $image;
+    }
+
+    public function getImage(): ?EmbeddedFile
+    {
+        return $this->image;
     }
 }

@@ -54,8 +54,7 @@ class ProductsRepository extends ServiceEntityRepository
         {
             return $this->createQueryBuilder('p')
             ->leftJoin('p.categories','c')
-            ->leftJoin('p.images','i')
-            ->select('p','c','i')
+            ->select('p','c')
             ->where('p.slug = :slug')
             ->setParameter('slug',$slug)
             ->getQuery()

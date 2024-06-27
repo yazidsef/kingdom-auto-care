@@ -12,13 +12,9 @@
         <div class="col mb-4">
             <div class="card h-100" style="width: 18rem;">
                 <div class="card-body">
-                    {% for image in images %}
-                    {% if image.products.id == product.id %}
+                   
+                        <img src="{{ asset('assets/images/products/sans-titre-667dd21b3511a905314072.jpeg')}} " class="d-block w-100" alt="product">
                         
-                        <img src="{{ asset('assets/uploadsproducts/') ~ image.name }}" class="d-block w-100" alt="{{ product.name }}">
-                        <img src="/assets/uploadsproducts/image0.png" class="d-block w-100" alt="product">
-                        {% endif %}
-                        {% endfor %}
                     <h5 class="card-title">{{product.name}}</h5>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     <a href="{{path('products_details', {slug:product.slug})}}" class="btn btn-primary">voir les details</a>
