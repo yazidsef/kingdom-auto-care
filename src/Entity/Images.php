@@ -20,8 +20,6 @@ class Images
     #[ORM\JoinColumn(nullable: false)]
     private ?Products $products = null;
 
-    #[ORM\OneToOne(mappedBy: 'image', cascade: ['persist', 'remove'])]
-    private ?Marques $marques = null;
 
     public function getId(): ?int
     {
@@ -52,20 +50,4 @@ class Images
         return $this;
     }
 
-    public function getMarques(): ?Marques
-    {
-        return $this->marques;
-    }
-
-    public function setMarques(Marques $marques): static
-    {
-        // set the owning side of the relation if necessary
-        if ($marques->getImage() !== $this) {
-            $marques->setImage($this);
-        }
-
-        $this->marques = $marques;
-
-        return $this;
-    }
 }

@@ -24,9 +24,7 @@ class Marques
     #[ORM\OneToMany(targetEntity: Products::class, mappedBy: 'marques' , orphanRemoval: true ,cascade:['persist'])]
     private Collection $products;
 
-    #[ORM\OneToOne(inversedBy: 'marques', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Images $image = null;
+   
 
     public function __construct()
     {
@@ -80,15 +78,4 @@ class Marques
         return $this;
     }
 
-    public function getImage(): ?Images
-    {
-        return $this->image;
-    }
-
-    public function setImage(Images $image): static
-    {
-        $this->image = $image;
-
-        return $this;
-    }
 }
