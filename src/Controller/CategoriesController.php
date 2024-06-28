@@ -18,18 +18,17 @@ class CategoriesController extends AbstractController
 {   
 
     #[Route('/{slug}' , name:'list')]
-    public function list(ImagesRepository $images,Request $request ,string $slug , ProductsRepository $productsRepository ,PaginatorInterface $paginator): Response
+    public function list(Request $request ,string $slug , ProductsRepository $productsRepository ,PaginatorInterface $paginator): Response
     {
         //Récupération des produits par catégorie , avec la pagination pour reduire le temps de chargement
         $allProducts = $productsRepository->testTwo($slug);
-        $images = $images->findAll();
         $products = $paginator->paginate(
             $allProducts,
             $request->query->getInt('page', 1),
             4,
         );
         
-        return $this->render('categories/list.html.twig',compact('products','images'));
+        return $this->render('categories/list.html.twig',compact('products'));
     }
 }
 
