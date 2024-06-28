@@ -29,10 +29,10 @@ class ProductsFormType extends AbstractType
             ->add('prix',MoneyType::class , options:['divisor'=>100 , 'constraints'=>[new Positive(message:'Le prix doit etre positif')]])
             ->add('stock',IntegerType::class)
             ->add('imageFile',VichImageType::class,[
-                'required'=>false,
-                'allow_delete'=>false,
-                'download_uri'=>false,
-                'image_uri'=>false,
+                'required'=>true,
+                'allow_delete'=>true,
+                'download_uri'=>true,
+                'image_uri'=>true,
                 'asset_helper'=>true
             ])
             ->add('marques',EntityType::class,[

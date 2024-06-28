@@ -5,6 +5,7 @@ use App\Entity\Images;
 use App\Entity\Products;
 use App\Form\ProductsFormType;
 use App\Repository\ProductsRepository;
+use App\Service\ImageManipulator;
 use App\Service\PictureService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,14 +25,14 @@ class ProductsController extends AbstractController
         return $this->render('admin/products/index.html.twig',compact('products'));
     }
     #[Route('/ajout', name: 'add')]
-    public function add(PictureService $pictureService ,Request $request , EntityManagerInterface $em , SluggerInterface $slugger):Response
+    public function add(Request $request , EntityManagerInterface $em , SluggerInterface $slugger):Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
         //on creer un nouveau produit
         $product = new Products();
         $form = $this->createForm(ProductsFormType::class, $product);
         $form->handleRequest($request);
-
+       
         if($form->isSubmitted() && $form->isValid())
         {
             //on recupere les images
@@ -50,7 +51,7 @@ class ProductsController extends AbstractController
             // }
             $slug = $slugger->slug($product->getName());
             $product->setSlug($slug);
-           
+            dd($product->getImage());
             $em->persist($product);
             $em->flush(); 
             $this->addFlash('success','Le produit a bien été ajouté');
@@ -87,7 +88,7 @@ class ProductsController extends AbstractController
                 $fichier  =$pictureService->add($image , $folder , 300 , 300);
                 $img = new Images();
                 $img->setName($fichier);
-                $product->addImage($img);
+                $product->setImage($img);
         
             }
             $slug = $slugger->slug($product->getName());

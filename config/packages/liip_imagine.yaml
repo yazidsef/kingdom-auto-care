@@ -1,3 +1,13 @@
-# app/config/route/liip_imagine.yml
-_liip_imagine:
-    resource: "@LiipImagineBundle/Resources/config/routing.yaml"
+liip_imagine:
+    resolvers:
+        default:
+            web_path: ~
+
+    filter_sets:
+        thumbnail:
+            filters:
+                thumbnail:
+                    size: [120, 90]  # Resize the image to 120x90 pixels
+                    mode: outbound   # Mode for resizing (outbound means resize to fit within dimensions)
+                crop:
+                    size: [120, 90]  # Crop the image to exactly 120x90 pixels
