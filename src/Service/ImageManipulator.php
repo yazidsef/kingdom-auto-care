@@ -28,8 +28,8 @@ class ImageManipulator{
         //ensure target directory exists
         $this->filesystem->mkdir($targetDir);
 
-        $imageName = basename($path);
-        $resizedImage->save($targetDir . '/' . $imageName , ['quality' => 75]);
+        $imageName = pathinfo(basename($path), PATHINFO_FILENAME) . '.webp';
+        $resizedImage->save($targetDir . '/' . $imageName , ['webp_quality' => 75]);
 
     }
 }

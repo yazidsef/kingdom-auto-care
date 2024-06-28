@@ -206,7 +206,7 @@ class Products
         return $this->imageFile;
     }
 
-    public function setImage(EmbeddedFile $image): void
+    public function setImage(?string $image): void
     {
         $this->image = $image;
     }
