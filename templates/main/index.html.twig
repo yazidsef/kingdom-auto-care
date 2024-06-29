@@ -1,9 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Kingdom auto-care{% endblock %}
-{% block stylesheets %}
-
-{% endblock %}
 {% block body %}
   <main class="container">  
             <div class="row justify-content-around mt-5 ">
@@ -66,10 +63,10 @@
                             {% for product in category.products %}
                             <div class="col-6 col-lg-4 col-md-6  mb-4">
                                 <div class="card card-height" >
-                                    <img src="{{ asset('assets/images/products/' ~ product.image.name ) }}" class="d-block image-height" style="height:250px" alt="{{ product.name }}">
+                                    <img src="{{ asset('assets/images/products/' ~ product.image.name ) }}" class="d-block image-height"  alt="{{ product.name }}">
                                   <div class="card-body">
                                     <h4 class="card-title">{{product.name}}</h4>
-                                    <h5>{{product.prix}} $</h5>
+                                    <h5>Prix :{{product.prix}} $</h5>
                                     <p class="card-text">{{product.description}}</p>
                                   </div>
                                   <div class="card-footer">

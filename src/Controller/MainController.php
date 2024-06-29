@@ -15,7 +15,7 @@ class MainController extends AbstractController
     #[Route('/', name: 'main')]
     public function index(CategoriesRepository $categoriesRepository , PaginatorInterface $paginator , Request $request): Response
     {       
-        $categories = $categoriesRepository->ProductsWithCategories(1,10);
+        $categories = $categoriesRepository->ProductsWithCategories();
         
         return $this->render('main/index.html.twig',compact('categories'));
     }
