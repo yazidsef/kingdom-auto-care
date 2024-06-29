@@ -3,61 +3,118 @@
 {% block title %}Kingdom auto-care{% endblock %}
 {% block body %}
   <main class="container">  
-            <div class="row justify-content-around mt-5 ">
+            <div class="row justify-content-around mt-4 ">
                 <!-- categories -->
-               <div class="bg-light background-dark col-4 col-sm-4 col-lg-2 d-none d-sm-block">
-                    <h1>categories</h1>        
-                    <div class="row mt-3">
-                  {% for category in categories %}
-                    {% if category.parent == null %}
-                     <h2 class="mt-2 m-auto medium">{{ category.name }}</h2>
-                      {% for subcategory in categories %}
-                        {% if subcategory.parent is not null and subcategory.parent.id == category.id %}
-                          <a href="{{ path('categories_list', {slug: subcategory.slug}) }}" class=" col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">{{ subcategory.name }}</a>
-                          
-                        {% endif %}
-                      {% endfor %}
-                      
-                    {% endif %}
-                  {% endfor %}
-
-
-                    
-                    </div>      
-                </div>
-                
+                <div class="bg-light background-dark col-4 col-sm-4 col-lg-2 d-none d-sm-block">
+                  <h1 >Categories</h1>        
+                  <div class="row mt-3">
+                      <!-- Kits Section -->
+                      <h2 class="mt-2 m-auto medium titre">Lavage et Prélavage</h2>
+                      <a href="{{ path('categories_list', {slug: 'prelavage'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Prélavage</a>
+                      <a href="{{ path('categories_list', {slug: 'shampoing'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Shampoing</a>
+                      <a href="{{ path('categories_list', {slug: 'gants'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Gants</a>
+                      <a href="{{ path('categories_list', {slug: 'sechage'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Séchage</a>
+                      <a href="{{ path('categories_list', {slug: 'goudron-calcaire'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Goudron & Calcaire</a>
+                      <a href="{{ path('categories_list', {slug: 'demoustiquant'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Démoustiquant</a>
+                      <a href="{{ path('categories_list', {slug: 'lavage-sans-eau'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Lavage Sans Eau</a>
+                      <a href="{{ path('categories_list', {slug: 'peinture-mate'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Peinture Mate</a>
+                      <a href="{{ path('categories_list', {slug: 'accessoires'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Accessoires</a>
+              
+                      <!-- Jantes et Pneus Section -->
+                      <h2 class="mt-2 m-auto titre">Jantes et Pneus</h2>
+                      <a href="{{ path('categories_list', {slug: 'decontaminants-ferreux'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Décontaminants ferreux</a>
+                      <a href="{{ path('categories_list', {slug: 'nettoyant-jantes'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Nettoyant Jantes</a>
+                      <a href="{{ path('categories_list', {slug: 'degraissant'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Dégraissant</a>
+                      <a href="{{ path('categories_list', {slug: 'brosses-pinceaux'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Brosses & Pinceaux</a>
+                      <a href="{{ path('categories_list', {slug: 'dressing-pneu'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Dressing Pneu</a>
+                      <a href="{{ path('categories_list', {slug: 'protection-jantes'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Protection Jantes</a>
+              
+                      <!-- Décontamination Section -->
+                      <h2 class="mt-2 m-auto medium titre">Décontamination</h2>
+                      <a href="{{ path('categories_list', {slug: 'clay-bar'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Clay Bar</a>
+                      <a href="{{ path('categories_list', {slug: 'lubrifiant'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Lubrifiant</a>
+                      <a href="{{ path('categories_list', {slug: 'degoudronnant'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Dégoudronnant</a>
+                      <a href="{{ path('categories_list', {slug: 'accessoires'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Accessoires</a>
+              
+                      <!-- Correction & Polissage Section -->
+                      <h2 class="mt-2 m-auto medium titre">Correction & Polissage</h2>
+                      <a href="{{ path('categories_list', {slug: 'polisseuses'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Polisseuses</a>
+                      <a href="{{ path('categories_list', {slug: 'polish'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Polish</a>
+                      <a href="{{ path('categories_list', {slug: 'pads-machines'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Pads Machines</a>
+                      <a href="{{ path('categories_list', {slug: 'pads-manuels'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Pads Manuels</a>
+                      <a href="{{ path('categories_list', {slug: 'cleaner'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Cleaner</a>
+                      <a href="{{ path('categories_list', {slug: 'wetsanding'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Wetsanding</a>
+                      <a href="{{ path('categories_list', {slug: 'accessoires'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Accessoires</a>
+              
+                      <!-- Protection & Cire Section -->
+                      <h2 class="mt-2 m-auto medium titre">Protection & Cire</h2>
+                      <a href="{{ path('categories_list', {slug: 'lustreur-cleaner'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Lustreur & Cleaner</a>
+                      <a href="{{ path('categories_list', {slug: 'cire-naturelle'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Cire Naturelle</a>
+                      <a href="{{ path('categories_list', {slug: 'cire-synthetique'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Cire Synthétique</a>
+                      <a href="{{ path('categories_list', {slug: 'protection-ceramique'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Protection Céramique</a>
+                      <a href="{{ path('categories_list', {slug: 'quick-detailer-wax'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Quick Detailer / Wax</a>
+                      <a href="{{ path('categories_list', {slug: 'peinture-mate'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Peinture Mate</a>
+                      <a href="{{ path('categories_list', {slug: 'dressing-plastique'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Dressing Plastique</a>
+              
+                      <!-- Interieur Section -->
+                      <h2 class="mt-2 m-auto medium titre">Interieur</h2>
+                      <a href="{{ path('categories_list', {slug: 'tissus-moquettes'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Tissus & Moquettes</a>
+                      <a href="{{ path('categories_list', {slug: 'cuirs'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Cuirs</a>
+                      <a href="{{ path('categories_list', {slug: 'plastiques'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Plastiques</a>
+                      <a href="{{ path('categories_list', {slug: 'impermeabilisant-textile'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Imperméabilisant textile</a>
+                      <a href="{{ path('categories_list', {slug: 'senteurs-destructeurs-odeurs'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Senteurs et Destructeurs d'odeurs</a>
+              
+                      <!-- Vitres Section -->
+                      <h2 class="mt-2 m-auto medium titre">Vitres</h2>
+                      <a href="{{ path('categories_list', {slug: 'polish-vitres-phares'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Polish Vitres & Phares</a>
+                      <a href="{{ path('categories_list', {slug: 'nettoyant'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Nettoyant</a>
+                      <a href="{{ path('categories_list', {slug: 'protection-vitres'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Protection Vitres</a>
+                      <a href="{{ path('categories_list', {slug: 'microfibres-vitres'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Microfibres Vitres</a>
+              
+                      <!-- Accessoires Section -->
+                      <h2 class="mt-2 m-auto medium titre">Accessoires</h2>
+                      <a href="{{ path('categories_list', {slug: 'microfibres'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Microfibres</a>
+                      <a href="{{ path('categories_list', {slug: 'applicateurs-pads-manuels'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Applicateurs & Pads Manuels</a>
+                      <a href="{{ path('categories_list', {slug: 'pulverisateurs'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Pulvérisateurs</a>
+                      <a href="{{ path('categories_list', {slug: 'brosses-pinceaux'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Brosses & Pinceaux</a>
+                      <a href="{{ path('categories_list', {slug: 'detailing-bag'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Detailing bag</a>
+                      <a href="{{ path('categories_list', {slug: 'autres'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Autres</a>
+              
+                      <!-- Autres Surfaces Section -->
+                      <h2 class="mt-2 m-auto medium titre">Autres Surfaces</h2>
+                      <a href="{{ path('categories_list', {slug: 'compartiment-moteur'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Compartiment Moteur</a>
+                      <a href="{{ path('categories_list', {slug: 'cabriolet'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Cabriolet</a>
+                      <a href="{{ path('categories_list', {slug: 'chromes-metaux'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Chromes & Métaux</a>
+                      <a href="{{ path('categories_list', {slug: 'moto-scooter'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">Moto & Scooter</a>
+                      <a href="{{ path('categories_list', {slug: 'ppf-covering'}) }}" class="col-12 mt-2 rounded text-decoration-none text-white bg-dark p-3 text-wrap">PPF - Covering</a>
+                  </div>      
+              </div>
+              
                 <!-- produits -->
-                <div class="col-12 col-sm-8 center">
+                <div class="col-12 col-sm-8">
+
                     <div class="row ">
                       <!-- carousel -->
                       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                        </ol>
-                        <div class="carousel-inner mb-5" style="height: 500px; background-image: cover; background-position: center;">
+                        <div class="carousel-inner  mb-3 carousel-responsive">
                           <div class="carousel-item active">
-                            <img class="d-block w-100 h-10" src="{{ asset('assets/uploads/image0.png') }}" alt="First slide" >
+                            <img class="d-block w-100 " src="{{ asset('assets/uploads/detailingshop-cover-1.png') }}" alt="First slide" >
                           </div>
                           <div class="carousel-item">
-                            <img class="d-block w-100 h-50" src="{{ asset('assets/uploads/image1.png') }}" alt="Second slide">
-                          </div>
-                          <div class="carousel-item">
-                            <img class="d-block w-100 h-50" src="{{ asset('assets/uploads/image2.png') }}" alt="Third slide">
+                            <img class="d-block w-100" src="{{ asset('assets/uploads/detailingshop-cover.png') }}" alt="Second slide">
                           </div>
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                          <span class="sr-only">Previous</span>
+                          <span class="sr-only"></span>
                         </a>
                         <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
                           <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                          <span class="sr-only">Next</span>
+                          <span class="sr-only"></span>
                         </a>
                       </div>
                       <!--carousel ends-->
-
+                    <strong class=" bg-danger text-white p-2  mb-3 " style="width: 97%;">PROMOTIONS !!!</strong>
                       {% for category in categories %}
                         {% if category.products is defined %}
                             {% for product in category.products %}

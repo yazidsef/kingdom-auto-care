@@ -73,6 +73,9 @@ class Products
     #[ORM\JoinColumn(nullable: false)]
     private ?Marques $marques = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $promo = null;
+
     public function __construct()
     {
         $this->image = new EmbeddedFile();
@@ -214,5 +217,17 @@ class Products
     public function getImage(): ?EmbeddedFile
     {
         return $this->image;
+    }
+
+    public function isPromo(): ?bool
+    {
+        return $this->promo;
+    }
+
+    public function setPromo(?bool $promo): static
+    {
+        $this->promo = $promo;
+
+        return $this;
     }
 }

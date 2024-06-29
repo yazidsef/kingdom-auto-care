@@ -8,7 +8,9 @@
 
     <main class="container mt-5">
         <section class="row">
-        {{ dump(products) }}
+     {% if products.items|length == 0 %}
+    aucun produit disponible
+{% endif %}
              {% for product in products %}
         <div class="col mb-4">
             <div class="card h-100" style="width: 18rem;">
