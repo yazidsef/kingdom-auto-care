@@ -6,6 +6,7 @@ use App\Entity\Categories;
 use App\Entity\Marques;
 use App\Entity\Products;
 use App\Repository\CategoriesRepository;
+use Faker\Provider\ar_EG\Text;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -14,9 +15,9 @@ use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\All;
-use Symfony\Component\Validator\Constraints\Image;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\Positive;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ProductsFormType extends AbstractType
 {
@@ -27,6 +28,22 @@ class ProductsFormType extends AbstractType
             ->add('description',TextType::class)
             ->add('prix',MoneyType::class , options:['divisor'=>100 , 'constraints'=>[new Positive(message:'Le prix doit etre positif')]])
             ->add('stock',IntegerType::class)
+            ->add('imageFile', FileType::class, [
+                'label' => 'Product Image',
+                'mapped' => true,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '5M',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                            'image/webp',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid image file (JPEG, PNG, WebP)',
+                    ])
+                ],
+            ])
             ->add('marques',EntityType::class,[
                 'class'=>Marques::class,
                 'choice_label'=>'name'
@@ -42,17 +59,7 @@ class ProductsFormType extends AbstractType
                     ->orderBy('c.name','ASC');
                 }
             ])
-            ->add('images',FileType::class ,[
-                'label'=> false ,
-                'multiple'=> true ,
-                'mapped' => false  , 
-                'required' => false ,
-                'constraints'=>[
-                    new All(
-                    new Image(['maxWidth'=>1280,'maxWidthMessage'=>'la largeur de l\'image ne doit pas depasser 1280px' ]) )
-                ]
-
-            ])
+            
         ;
     }
 

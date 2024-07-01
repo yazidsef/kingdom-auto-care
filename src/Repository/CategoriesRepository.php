@@ -61,17 +61,16 @@ class CategoriesRepository extends ServiceEntityRepository
                 ->getQuery()
                 ->getOneOrNullResult();
             }
-            public function ProductsWithCategories($page , $itemsPerPage){
+            public function ProductsWithCategories(){
                 $query = $this->createQueryBuilder('c')
                     ->innerJoin('c.products','p')
                     ->innerJoin('p.marques','m')
                     ->select('p','m' ,'c')
-                    
+                   
                     ->getQuery()
                     ->getResult();
                     return $query;
-                
-            }
+                }
 
             
 }

@@ -13,16 +13,17 @@
             <div class="col-6">
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
-                        {% for iteration in 1..products.images|length %}
+                        {# {% for iteration in 1..products.images|length %}
                             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ iteration - 1 }}" {{ (loop.first ) ?'class="active" aria-current="true"' : '' }} aria-label="Slide {{ iteration }}"></button>
-                        {% endfor %}
+                        {% endfor %} #}
                     </div>
                     <div class="carousel-inner">
-                        {% for image in products.images %}
+                    {{ dump(products.image) }}
+                        {# {% for image in products %}
                             <div class="carousel-item {{ (loop.first ) ? 'active' : '' }}">
-                                <img src="{{ asset('assets/uploadsproducts/mini/300x300-') ~ image.name }}" class="d-block w-100" alt="{{ products.name }}">
+                                <img src="{{ asset('assets/products/') ~ image.name }}" class="d-block w-100" alt="{{ products.name }}">
                             </div>
-                        {% endfor %}
+                        {% endfor %} #}
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>

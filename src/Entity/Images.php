@@ -16,13 +16,6 @@ class Images
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\ManyToOne(inversedBy: 'images')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Products $products = null;
-
-    #[ORM\OneToOne(mappedBy: 'image', cascade: ['persist', 'remove'])]
-    private ?Marques $marques = null;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -40,32 +33,6 @@ class Images
         return $this;
     }
 
-    public function getProducts(): ?Products
-    {
-        return $this->products;
-    }
+  
 
-    public function setProducts(?Products $products): static
-    {
-        $this->products = $products;
-
-        return $this;
-    }
-
-    public function getMarques(): ?Marques
-    {
-        return $this->marques;
-    }
-
-    public function setMarques(Marques $marques): static
-    {
-        // set the owning side of the relation if necessary
-        if ($marques->getImage() !== $this) {
-            $marques->setImage($this);
-        }
-
-        $this->marques = $marques;
-
-        return $this;
-    }
 }
