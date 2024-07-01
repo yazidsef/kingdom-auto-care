@@ -41,8 +41,7 @@ class Products
     private ?EmbeddedFile $image = null;
 
     #[Assert\NotBlank(message:'la description de produit ne peut pas etre vide')]
-    #[Assert\Length(min:20,minMessage:'la description de produit doit contenir au moins {{ limit }} caratcteres', 
-    max:255 , maxMessage:'la description de produit doit contenir au plus {{ limit }} caratcteres')]
+    #[Assert\Length(min:20,minMessage:'la description de produit doit contenir au moins {{ limit }} caratcteres')]
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
@@ -72,6 +71,9 @@ class Products
     #[ORM\ManyToOne(inversedBy: 'products')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Marques $marques = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $promo = null;
 
     public function __construct()
     {
@@ -214,5 +216,17 @@ class Products
     public function getImage(): ?EmbeddedFile
     {
         return $this->image;
+    }
+
+    public function isPromo(): ?bool
+    {
+        return $this->promo;
+    }
+
+    public function setPromo(?bool $promo): static
+    {
+        $this->promo = $promo;
+
+        return $this;
     }
 }

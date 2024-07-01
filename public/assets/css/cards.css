@@ -1,5 +1,12 @@
 /* i'm going to set the height of img and card in all of medias  */
 
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
 .card-height{
     height:550px;
     
@@ -28,3 +35,41 @@
     white-space: normal;
     
 }
+.titre{
+    font-size: 1.3rem;
+    
+}
+.carousel-inner{
+    max-height:450px ;
+    min-height: 450px;
+}
+
+@media screen and (max-width: 575.98px) and (min-width: 512px) {
+    .carousel-inner{
+        max-height:250px ;
+        min-height: 250px;
+    }
+  }
+
+@media screen and (max-width: 768px) and (min-width: 576px) {
+    .carousel-inner{
+        max-height:200px ;
+        min-height: 200px;
+    }
+  }
+
+
+@media screen and (max-width: 992px) and (min-width: 768px) {
+    .carousel-inner{
+        max-height:250px ;
+        min-height: 250px;
+        
+    }
+  }
+  @media screen and (max-width: 1200px) and (min-width: 993px) {
+    .carousel-inner{
+        max-height:350px ;
+        min-height: 350px;
+        
+    }
+  }
