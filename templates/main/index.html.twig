@@ -91,7 +91,7 @@
               </div>
               
                 <!-- produits -->
-                <div class="col-12 col-sm-8">
+                <div class="col-12 col-sm-8 carousel-container">
 
                     <div class="row ">
                       <!-- carousel -->
@@ -118,7 +118,7 @@
                       {% for category in categories %}
                         {% if category.products is defined %}
                             {% for product in category.products %}
-                            <div class="col-6 col-lg-4 col-md-6  mb-4">
+                            <div class="col-6 col-lg-4 col-md-6 col-sm-6   mb-4">
                                 <div class="card card-height" >
                                     <img src="{{ asset('assets/images/products/' ~ product.image.name ) }}" class="d-block image-height"  alt="{{ product.name }}">
                                   <div class="card-body">

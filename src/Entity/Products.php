@@ -41,8 +41,7 @@ class Products
     private ?EmbeddedFile $image = null;
 
     #[Assert\NotBlank(message:'la description de produit ne peut pas etre vide')]
-    #[Assert\Length(min:20,minMessage:'la description de produit doit contenir au moins {{ limit }} caratcteres', 
-    max:255 , maxMessage:'la description de produit doit contenir au plus {{ limit }} caratcteres')]
+    #[Assert\Length(min:20,minMessage:'la description de produit doit contenir au moins {{ limit }} caratcteres')]
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
