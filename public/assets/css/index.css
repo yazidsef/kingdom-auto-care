@@ -191,11 +191,17 @@
         max-height:250px ;
         min-height: 250px;
     }
+    .prix{
+        font-size: 0.9rem;
+    }
+    .btn{
+        font-size:0.9rem ;
+        padding: 5px;
+    }
   }
   @media screen and (max-width: 1200px) and (min-width: 993px) {
     .carousel-inner{
         max-height:350px ;
         min-height: 350px;
-        
     }
   }
