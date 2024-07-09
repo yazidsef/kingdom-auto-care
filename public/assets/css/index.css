@@ -103,6 +103,7 @@
     }
     .prix{
         font-size: 0.7rem;
+        border: 1px solid black;
     }
     
     
@@ -148,19 +149,22 @@
 
 @media screen and (max-width: 768px) and (min-width: 576px) {
     .carousel-inner{
+        max-height:200px ;
+        min-height: 200px;
+        box-sizing: border-box;
+    }
+    
+    .carousel-inner img{
         max-height:250px ;
         min-height: 250px;
     }
     .card-height{
-        height:400px;
+        height:410px;
         width: auto;
     }
     .image-height{
         min-height: 175px;
         max-height: auto;
-    }
-    .btn{
-        font-size: 0.8rem;
     }
     .card-text{
 
@@ -169,6 +173,14 @@
         -webkit-line-clamp: 3; /* Number of lines to show */
         -webkit-box-orient: vertical;
         white-space: normal;
+        
+    }
+    .prix{
+        font-size: 0.8rem;
+    }
+    .btn{
+        font-size:0.6rem ;
+        padding: 5px;
     }
     
   }
