@@ -7,12 +7,12 @@
 {% endblock %}
 
 {% block body %}
-    <main class="container">
+    <main class="container mt-5">
         <section class="row">
             <div class="col-12">
-                <h1>{{ products.name }}</h1>
+                
             </div>
-            <div class="col-6">                          
+            <div class="col-6"> <h1>{{ products.name }}</h1>                         
                 <img src="{{ asset('assets/images/products/'  ~ products.image.name ) }}" style="max-height: 450px; min-height: 350px;" class=" image-height"  alt="">
             </div>
             <div class="col-6">
