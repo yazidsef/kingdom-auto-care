@@ -9,13 +9,11 @@
 {% block body %}
     <main class="container mt-5">
         <section class="row">
-            <div class="col-12">
-                
+            
+            <div class="col-12 col-sm-6 "> <h1>{{ products.name }}</h1>                         
+                <img src="{{ asset('assets/images/products/'  ~ products.image.name ) }}" style="max-height: 450px; min-height: 350px;" class=" image-height col-lg-10"  alt="">
             </div>
-            <div class="col-6"> <h1>{{ products.name }}</h1>                         
-                <img src="{{ asset('assets/images/products/'  ~ products.image.name ) }}" style="max-height: 450px; min-height: 350px;" class=" image-height"  alt="">
-            </div>
-            <div class="col-6">
+            <div class="col-12 col-sm-6">
                 <h2>Description</h2>
                 <p class="">{{ products.description }}</p>
                 <p>Catégorie : {{ products.categories.name }}</p>

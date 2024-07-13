@@ -77,11 +77,12 @@
     }
     
     .carousel-inner img{
-        max-height:250px ;
-        min-height: 250px;
+        max-height:270px ;
+        min-height: 270px;
+       
     }
     .card-height{
-        height:370px;
+        height:330px;
         width: 175px;
 
     }
@@ -104,7 +105,10 @@
     }
     .prix{
         font-size: 0.7rem;
-        border: 1px solid black;
+    }
+    .image-height{
+        min-height: 145px;
+        max-height: auto;
     }
     
     
@@ -127,7 +131,7 @@
         width: auto;
     }
     .image-height{
-        min-height: 175px;
+        min-height: 185px;
         max-height: auto;
     }
     .card-text{
