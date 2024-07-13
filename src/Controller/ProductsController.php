@@ -26,7 +26,7 @@ class ProductsController extends AbstractController
     }
 
     #[Route('/{slug}', name: 'details')]
-    public function details(string $slug): Response
+    public function details(string $slug , ): Response
     {
         $products = $this->productsRepository->findWithCategoryAndImages($slug);
         if(!$products){

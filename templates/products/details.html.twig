@@ -1,5 +1,7 @@
 {% extends "base.html.twig" %}
-
+{% block srtylesheets %}
+    
+{% endblock %}
 {% block title %}Détails de
     {{ products.name }}
 {% endblock %}
@@ -10,33 +12,12 @@
             <div class="col-12">
                 <h1>{{ products.name }}</h1>
             </div>
-            <div class="col-6">
-                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-indicators">
-                        {# {% for iteration in 1..products.images|length %}
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ iteration - 1 }}" {{ (loop.first ) ?'class="active" aria-current="true"' : '' }} aria-label="Slide {{ iteration }}"></button>
-                        {% endfor %} #}
-                    </div>
-                    <div class="carousel-inner">
-                    {{ dump(products.image) }}
-                        {# {% for image in products %}
-                            <div class="carousel-item {{ (loop.first ) ? 'active' : '' }}">
-                                <img src="{{ asset('assets/products/') ~ image.name }}" class="d-block w-100" alt="{{ products.name }}">
-                            </div>
-                        {% endfor %} #}
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
+            <div class="col-6">                          
+                <img src="{{ asset('assets/images/products/'  ~ products.image.name ) }}" style="max-height: 450px; min-height: 350px;" class=" image-height"  alt="">
             </div>
             <div class="col-6">
-                <p>{{ products.description }}</p>
+                <h2>Description</h2>
+                <p class="">{{ products.description }}</p>
                 <p>Catégorie : {{ products.categories.name }}</p>
                 <p>Prix : {{ products.prix / 100 }} €</p>
                 {% if products.stock > 0 %}
