@@ -6,11 +6,94 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Maps</a>
+                  <li class="nav-item">{% if app.session.get('panier') %}
+                    <a class="nav-link" href="{{path('cart_index')}}">Panier <span class="text-danger">({{ app.session.get('panier')|length }})</span> </a>
+                  {% endif %}
                   </li>
-               
-                  
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle  d-lg-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Categories
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a href="{{ path('categories_list', {slug: 'prelavage'}) }}" class="rounded text-decoration-none text-black">Prélavage</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'shampoing'}) }}" class="rounded text-decoration-none text-black">Shampoing</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'gants'}) }}" class="rounded text-decoration-none text-black">Gants</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'sechage'}) }}" class="rounded text-decoration-none text-black ">Séchage</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'goudron-calcaire'}) }}" class="rounded text-decoration-none text-black ">Goudron & Calcaire</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'demoustiquant'}) }}" class="rounded text-decoration-none text-black ">Démoustiquant</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'lavage-sans-eau'}) }}" class="rounded text-decoration-none text-black ">Lavage Sans Eau</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'peinture-mate'}) }}" class="rounded text-decoration-none text-black ">Peinture Mate</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'accessoires'}) }}" class="rounded text-decoration-none text-black ">Accessoires</a></li>
+              
+                      <!-- Jantes et Pneus Section -->
+                      <h2 class="mt-2 m-auto titre">Jantes et Pneus</h2>
+                      <li><a href="{{ path('categories_list', {slug: 'decontaminants-ferreux'}) }}" class="rounded text-decoration-none text-black ">Décontaminants ferreux</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'nettoyant-jantes'}) }}" class="rounded text-decoration-none text-black ">Nettoyant Jantes</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'degraissant'}) }}" class="rounded text-decoration-none text-black ">Dégraissant</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'brosses-pinceaux'}) }}" class="rounded text-decoration-none text-black ">Brosses & Pinceaux</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'dressing-pneu'}) }}" class="rounded text-decoration-none text-black ">Dressing Pneu</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'protection-jantes'}) }}" class="rounded text-decoration-none text-black ">Protection Jantes</a></li>
+              
+                      <!-- Décontamination Section -->
+                      <h2 class="mt-2 m-auto medium titre">Décontamination</h2>
+                      <li><a href="{{ path('categories_list', {slug: 'clay-bar'}) }}" class="rounded text-decoration-none text-black ">Clay Bar</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'lubrifiant'}) }}" class="rounded text-decoration-none text-black ">Lubrifiant</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'degoudronnant'}) }}" class="rounded text-decoration-none text-black ">Dégoudronnant</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'accessoires'}) }}" class="rounded text-decoration-none text-black ">Accessoires</a></li>
+              
+                      <!-- Correction & Polissage Section -->
+                      <h2 class="mt-2 m-auto medium titre">Correction & Polissage</h2>
+                      <li><a href="{{ path('categories_list', {slug: 'polisseuses'}) }}" class="rounded text-decoration-none text-black ">Polisseuses</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'polish'}) }}" class="rounded text-decoration-none text-black ">Polish</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'pads-machines'}) }}" class="rounded text-decoration-none text-black ">Pads Machines</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'pads-manuels'}) }}" class="rounded text-decoration-none text-black ">Pads Manuels</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'cleaner'}) }}" class="rounded text-decoration-none text-black ">Cleaner</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'wetsanding'}) }}" class="rounded text-decoration-none text-black ">Wetsanding</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'accessoires'}) }}" class="rounded text-decoration-none text-black ">Accessoires</a></li>
+              
+                      <!-- Protection & Cire Section -->
+                      <h2 class="mt-2 m-auto medium titre">Protection & Cire</h2>
+                      <li><a href="{{ path('categories_list', {slug: 'lustreur-cleaner'}) }}" class="rounded text-decoration-none text-black ">Lustreur & Cleaner</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'cire-naturelle'}) }}" class="rounded text-decoration-none text-black ">Cire Naturelle</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'cire-synthetique'}) }}" class="rounded text-decoration-none text-black ">Cire Synthétique</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'protection-ceramique'}) }}" class="rounded text-decoration-none text-black ">Protection Céramique</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'quick-detailer-wax'}) }}" class="rounded text-decoration-none text-black ">Quick Detailer / Wax</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'peinture-mate'}) }}" class="rounded text-decoration-none text-black ">Peinture Mate</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'dressing-plastique'}) }}" class="rounded text-decoration-none text-black ">Dressing Plastique</a></li>
+              
+                      <!-- Interieur Section -->
+                      <h2 class="mt-2 m-auto medium titre">Interieur</h2>
+                      <li><a href="{{ path('categories_list', {slug: 'tissus-moquettes'}) }}" class="rounded text-decoration-none text-black ">Tissus & Moquettes</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'cuirs'}) }}" class="rounded text-decoration-none text-black ">Cuirs</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'plastiques'}) }}" class="rounded text-decoration-none text-black ">Plastiques</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'impermeabilisant-textile'}) }}" class="rounded text-decoration-none text-black ">Imperméabilisant textile</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'senteurs-destructeurs-odeurs'}) }}" class="rounded text-decoration-none text-black ">Senteurs et Destructeurs d'odeurs</a></li>
+              
+                      <!-- Vitres Section -->
+                      <h2 class="mt-2 m-auto medium titre">Vitres</h2>
+                      <li><a href="{{ path('categories_list', {slug: 'polish-vitres-phares'}) }}" class="rounded text-decoration-none text-black ">Polish Vitres & Phares</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'nettoyant'}) }}" class="rounded text-decoration-none text-black ">Nettoyant</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'protection-vitres'}) }}" class="rounded text-decoration-none text-black ">Protection Vitres</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'microfibres-vitres'}) }}" class="rounded text-decoration-none text-black ">Microfibres Vitres</a></li>
+              
+                      <!-- Accessoires Section -->
+                      <h2 class="mt-2 m-auto medium titre">Accessoires</h2>
+                      <li><a href="{{ path('categories_list', {slug: 'microfibres'}) }}" class="rounded text-decoration-none text-black ">Microfibres</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'applicateurs-pads-manuels'}) }}" class="rounded text-decoration-none text-black ">Applicateurs & Pads Manuels</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'pulverisateurs'}) }}" class="rounded text-decoration-none text-black ">Pulvérisateurs</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'brosses-pinceaux'}) }}" class="rounded text-decoration-none text-black ">Brosses & Pinceaux</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'detailing-bag'}) }}" class="rounded text-decoration-none text-black ">Detailing bag</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'autres'}) }}" class="rounded text-decoration-none text-black ">Autres</a></li>
+              
+                      <!-- Autres Surfaces Section -->
+                      <h2 class="mt-2 m-auto medium titre">Autres Surfaces</h2>
+                      <li><a href="{{ path('categories_list', {slug: 'compartiment-moteur'}) }}" class="rounded text-decoration-none text-black ">Compartiment Moteur</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'cabriolet'}) }}" class="rounded text-decoration-none text-black ">Cabriolet</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'chromes-metaux'}) }}" class="rounded text-decoration-none text-black ">Chromes & Métaux</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'moto-scooter'}) }}" class="rounded text-decoration-none text-black ">Moto & Scooter</a></li>
+                      <li><a href="{{ path('categories_list', {slug: 'ppf-covering'}) }}" class="rounded text-decoration-none text-black ">PPF - Covering</a></li>
+                    </ul>
+                  </li>
                 </ul>
                   <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
