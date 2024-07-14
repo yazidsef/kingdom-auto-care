@@ -42,7 +42,8 @@ class CartController extends AbstractController
         //on ajoute le produit dans le panier s'il y'a pas encore , sinon on incremente la quantité
         if(empty($panier[$id])){
             $panier [$id] = 1;
-        }else{//si le produit existe deja dans le panier (not empty)
+        }else{
+            //si le produit existe deja dans le panier (not empty)
             $panier[$id]++;
         }
         $session->set('panier',$panier);

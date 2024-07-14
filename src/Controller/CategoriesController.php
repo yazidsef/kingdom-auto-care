@@ -2,13 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Images;
-use App\Entity\Products;
-use App\Repository\CategoriesRepository;
-use App\Repository\ImagesRepository;
 use App\Repository\ProductsRepository;
 use Knp\Component\Pager\PaginatorInterface;
-use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
