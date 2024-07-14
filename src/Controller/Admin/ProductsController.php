@@ -35,16 +35,7 @@ class ProductsController extends AbstractController
        
         if($form->isSubmitted() && $form->isValid())
         {
-        //     $imageFile  = $form->get('imageFile')->getData();
-        //     if($imageFile){
-        //     $targetDir = '/home/yazid-carpro/projets/kingdom-auto-care/public/assets/images/products/';
-        //     $imageManipulator->resize($product,$imageFile, 300, 300, $targetDir);
-
-        //     $imageName = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME). '.webp';
-            
-        //     $product->setImage($imageName);
-        // }
-            
+            //on ajoute le produit
             $slug = $slugger->slug($product->getName());
             $product->setSlug($slug);
             $em->persist($product);
