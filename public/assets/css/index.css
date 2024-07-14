@@ -35,8 +35,7 @@
     
 }
 .titre{
-    font-size: 1.3rem;
-    
+    font-size: 1.3rem;  
 }
 .carousel-inner{
     max-height:450px ;
@@ -158,7 +157,7 @@
         min-height: 200px;
         box-sizing: border-box;
     }
-    
+
     .carousel-inner img{
         max-height:250px ;
         min-height: 250px;
@@ -202,6 +201,9 @@
     .btn{
         font-size:0.9rem ;
         padding: 5px;
+    }
+    .titre{
+        font-size: 0.9rem;  
     }
   }
   @media screen and (max-width: 1200px) and (min-width: 993px) {

@@ -9,7 +9,7 @@
         <div class="row">
             
             <main class="col-9 border border-light bg-white p-2">
-                <h1>Liste des categories</h1>
+                <h1>Liste des produits</h1>
                 <table class="table">
                     <thead>
                         <tr>
@@ -34,7 +34,7 @@
                                 <td> {{product.categories.name}} </td>
                                 <td>
                                     <a href="{{path('admin_products_edit', {'id': product.id})}}" class="btn btn-primary">Modifier</a>
-                                    <a href="{{path('admin_products_delete', {'id': product.id})}}" class="btn btn-danger">Supprimer</a>
+                                    <a href="{{path('admin_products_delete', {'id': product.id})}}" class="btn btn-danger mt-1">Supprimer</a>
                                 </td>
                             </tr>
                         {% endfor %}
