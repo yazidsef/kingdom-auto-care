@@ -65,8 +65,7 @@ class CategoriesRepository extends ServiceEntityRepository
                 $query = $this->createQueryBuilder('c')
                     ->innerJoin('c.products','p')
                     ->innerJoin('p.marques','m')
-                    ->select('p','m' ,'c')
-                   
+                    ->select('p','m' ,'c')    
                     ->getQuery()
                     ->getResult();
                     return $query;

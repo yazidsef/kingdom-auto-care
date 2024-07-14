@@ -18,7 +18,6 @@ class MarquesFixtures extends Fixture
             $marques->setName($faker->name());
             $image = $this->getReference('image-'.rand(1, 10));
             $this->addReference('marque-'.$marque, $marques);
-            $marques->setImage($image);
 
             $manager->persist($marques);
         }
