@@ -20,6 +20,7 @@
                         
                     <h5 class="card-title">{{product.name}}</h5>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <h5 class="prix">Prix :{{product.prix / 100}} €</h5>
                     <a href="{{path('products_details', {slug:product.slug})}}" class="btn btn-primary">voir les details</a>
                 </div>
             </div>
